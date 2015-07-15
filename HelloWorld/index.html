@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <script id="vertex-shader" type="x-shader/x-vertex">
+        attribute vec2 vPosition;
+        void main() {
+            gl_Position =  vec4(vPosition,0.0,1.0);
+        }
+    </script>
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        // At least mediump is required by the webGl. It defines the precision of the floating point numbers
+        // highp is also another possibility
+        precision mediump float;
+        void main() {
+            gl_FragColor = vec4(1.0,0.0,0.0,1.0);
+        } 
+    </script> 
+    <script src="../Common/webgl-utils.js" type="text/javascript"></script>
+    <script src="../Common/flatten.js" type="text/javascript"></script>
+    <script src="../Common/initShaders.js" type="text/javascript"></script>
+    <script src="js/triangle.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <canvas id="gl-canvas" width="512" height="512">
+            Oops... Your browser does not support HTML5 canvas element
+        </canvas>
+    </body>
+    </html>

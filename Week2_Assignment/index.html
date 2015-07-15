@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <script type="text/javascript" src="js/tesselation.js"></script>
+    <script type="text/javascript" src="../Common/webgl-utils.js"></script>
+    <script type="text/javascript" src="../Common/initShaders.js"></script>
+    <script type="text/javascript" src="../Common/MV.js"></script>
+    <script type="x-shader/x-vertex" id="vertex-shader">
+        attribute vec2 vPositions;
+        void main() {
+            gl_Position = vec4(vPositions,0.0,1.0);
+        }
+    </script>
+    <script id="fragment-shader" type="x-shader/x-fragment">
+        precision mediump float;
+        void main() {
+            gl_FragColor = vec4(1.0,0.0,0.0,1.0); 
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <canvas id="gl-canvas" style="width=1024px;height=1024px">Your browser does not support canvas element of html5</canvas>
+    </div>
+
+     <div>
+        <input id="subdivision-slider" type="range" id="angle" min="1" value="2" max="6" step="1" onchange="subdivisionChanged(this.value);"/>
+        <label id="subdivision-label">Number of subdivisions: 2</label>
+    </div>
+    <div>
+        <input id="angle-slider" type="range" id="angle" min="0" value="0" max="360" step="1" onchange="tensellateAndRender(this.value);"/>
+        <label id="value-label">Degree: 0</label>
+    </div>
+    <div>
+        <button id="start-stop-button" onclick="startStopRendering()">Start</button>
+    </div>
+
+</body>
+</html>
