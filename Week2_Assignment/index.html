@@ -5,6 +5,7 @@
     <script type="text/javascript" src="../Common/webgl-utils.js"></script>
     <script type="text/javascript" src="../Common/initShaders.js"></script>
     <script type="text/javascript" src="../Common/MV.js"></script>
+
     <script type="x-shader/x-vertex" id="vertex-shader">
         attribute vec2 vPositions;
         void main() {
@@ -28,7 +29,7 @@
         <label id="subdivision-label">Number of subdivisions: 2</label>
     </div>
     <div>
-        <input id="angle-slider" type="range" id="angle" min="0" value="0" max="360" step="1" onchange="tensellateAndRender(this.value);"/>
+        <input id="angle-slider" type="range" id="angle" min="0" value="0" max="360" step="1" onchange="tessellateAndRender(this.value);"/>
         <label id="value-label">Degree: 0</label>
     </div>
     <div>
