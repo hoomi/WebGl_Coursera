@@ -3,6 +3,7 @@
 <head>
    <script id="vertex-shader" type="x-shader/x-vertex">
         attribute vec2 vPosition;
+        uniform float theta;
         void main() {
             gl_Position =  vec4(vPosition,0.0,1.0);
         }
