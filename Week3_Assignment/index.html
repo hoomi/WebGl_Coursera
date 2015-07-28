@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/painting.js"></script>
+<script id='vertex-shader' type="x-shader/x-vertex">
+    
+    attribute vec2 vPosition;
+
+    void main() {
+        gl_Position = vec4(vPosition,0.0,1.0);
+    }
+</script>
+<script id="fragment-shader" type="x-shader/x-fragment">
+    #ifdef GL_FRAGMENT_SHADER_PRECISION_HIGH
+    prescision highp float;
+    #else
+    precision mediump float;
+    #endif
+
+    void main(){
+        gl_FragColor = vec4(0.0,0.0,1.0,1.0);
+    }
+</script>
+
+<body>
+    <div>
+        <input id="linewidth-slider" type="range" id="angle" min="1" value="1" max="20" step="1" />
+        <label id="linewidth-label">Line width: 1</label>
+    </div>
+    <canvas id='gl-canvas' width='512' height='512'>
+        Your browser does not support canvas element of HTML5
+    </canvas>
+</body>
+</html>
