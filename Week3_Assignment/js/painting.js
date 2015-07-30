@@ -1,11 +1,10 @@
 var gl,
-coords = [],
-buffers;
+buffers
+coords =[];
 
 window.onload = function() {
     var program = init();
     buffers = new Buffers(program);
-    buffers.render();
 }
 
 var init = function()  {
@@ -29,7 +28,7 @@ var Buffers = function(program) {
     prog = program,
     renderObject = new Render();
     
-    this.render = function() {
+    this.render = function(t) {
         gl.bindBuffer(gl.ARRAY_BUFFER, bufferId);
         gl.bufferData(gl.ARRAY_BUFFER,flatten(coords),gl.STATIC_DRAW);
         gl.vertexAttribPointer(vPosition,2,gl.FLOAT,true,0,0);
@@ -44,9 +43,11 @@ var Render = function() {
     $lineWidthSlider = $('#linewidth-slider'),
     $lineWidthLabel = $('#linewidth-label'),
     $canvas = $('#gl-canvas'),
+    xWindow = $canvas.width(),
+    yWindow = $canvas.height(),
     currentLineWidth = $lineWidthSlider.val(),
     pushMouseCoords = function(event) {
-         coords.push(event.clientX/256 - 1 ,-event.clientY/256 + 1);
+        coords.push(vec2(event.clientX/(xWindow / 2) - 1 ,-event.clientY/(yWindow / 2) + 1));
          buffers.render();
     },
     listenMouseMove = function() {
@@ -61,7 +62,7 @@ var Render = function() {
     this.render = function() {
         gl.lineWidth(currentLineWidth)
         gl.clear(gl.COLOR_BUFFER_BIT);
-        gl.drawArrays(gl.LINE_STRIP,0,coords.length/2 -1); 
+        gl.drawArrays(gl.LINE_STRIP,0,coords.length); 
     }
 
     $lineWidthSlider.on('change',function (event){
@@ -70,10 +71,10 @@ var Render = function() {
     });
     $canvas.on("mousedown", function(event) {
         listenMouseMove();
+        coords=[];
     });
 
     $canvas.on("mouseup", function(event) {
         stopListeningMouseMoving();
-        coords=[];
     });
 };
